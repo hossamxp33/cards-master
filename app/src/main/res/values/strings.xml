@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">عبر المدن</string>
+    <string name="tab_1">الرئيسية</string>
+    <string name="tab_2">تقارير</string>
+    <string name="tab_3">المزيد</string>
+    <string name="tab_4">المحفظة</string>
+
+    <string name="manadeeb">المناديب</string>
+    <string name="chat">المحادثة</string>
+    <string name="products">المنتجات</string>
+    <string name="google_maps_key">AIzaSyBYYwwgI8W2E1asOq31usbU_KG20FSv690</string>
+    <string name="chating">المحادثة</string>
+    <string name="maping">الخريطة</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="toast_2">The service has been disconnected!</string>
+
+</resources>

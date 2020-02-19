@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/layout"
+>
+
+    <data>
+
+        <variable
+                name="Context"
+                type="com.codesroots.mac.cards.presentaion.MainActivity"/>
+        <variable
+                name="listener"
+                type="com.codesroots.mac.cards.presentaion.ClickHandler"/>
+        <variable
+                name="data"
+                type="com.codesroots.mac.cards.models.PartnersModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:background="@drawable/reduisbackground"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"  >
+
+
+
+        <androidx.appcompat.widget.AppCompatImageView android:layout_width="0dp"
+                                                      android:layout_height="wrap_content"
+                                                      app:srcCompat="@drawable/analytics"
+                                                      tools:srcCompat="@drawable/analytics"
+                                                      app:layout_constraintEnd_toEndOf="parent"
+                                                      app:layout_constraintTop_toTopOf="parent"
+                                                      app:layout_constraintHeight_percent="1"
+                                                      app:layout_constraintWidth_percent="0.5"
+
+                                                      android:id="@+id/appCompatImageView"
+                                                      android:layout_marginBottom="8dp"
+                                                      app:layout_constraintBottom_toBottomOf="parent"/>
+        <TextView
+                android:text="@{data.headline}"
+                app:layout_constraintStart_toStartOf="parent"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

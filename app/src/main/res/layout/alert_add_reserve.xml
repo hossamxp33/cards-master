@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="10dp"
+    android:gravity="center"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <EditText
+            android:id="@+id/from"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:inputType="phone"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/linear_background"
+            android:gravity="center"
+            android:text="1"
+            android:hint="العدد المطلوب"/>
+
+    <TextView
+            android:id="@+id/save"
+            android:layout_width="200dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/linear_background_for_addtocart"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="شراء"
+            android:textColor="@color/white"
+            android:textSize="16dp"/>
+
+    <TextView
+            android:id="@+id/saveToRoom"
+            android:layout_width="200dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/linear_background_for_addtocart"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="حفظ"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+    <TextView
+            android:id="@+id/err"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:text="تاكيد الحجز"
+            android:textColor="#FD0000"
+            android:textSize="16dp"/>
+</LinearLayout>
