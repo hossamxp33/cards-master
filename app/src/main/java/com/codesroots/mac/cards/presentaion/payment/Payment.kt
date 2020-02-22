@@ -38,7 +38,7 @@ class Payment : AppCompatActivity() {
 
         if (!value!!.pencode.isNullOrEmpty()) {
 
-            value!!.pencode!!.forEach {
+            value.pencode!!.forEach {
 
                 secret.append(it.pencode)
                 secret.append("\n")

@@ -23,9 +23,7 @@ data class Buypackge (
     var err: String? = null,
     var serial:String? = null,
     @Ignore
-    var pencodee:List<Pencode>? = null,
-    @Ignore
-var pencode:List<Pencode>? = null
+    var pencode:List<Pencode>? = null
 
 ):Parcelable {
 
