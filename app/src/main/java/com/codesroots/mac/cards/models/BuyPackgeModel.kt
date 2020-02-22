@@ -4,30 +4,33 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
 @Entity(tableName = "Buypackge")
 @Parcelize
 data class Buypackge (
-    val opno: Int? = null,
-    val salor: String? = null,
-    val time: String? = null,
-    val device: String? = null,
-    val name: String? = null,
-    val src: String? = null,
-    val price: String? = null,
-    val notes: String? = null,
-    val count: String? = null,
-    val err: String? = null,
-val serial:String? = null
+    var opno: Int? = null,
+    var salor: String? = null,
+    var time: String? = null,
+    var device: String? = null,
+    var name: String? = null,
+    var src: String? = null,
+    var price: String? = null,
+    var notes: String? = null,
+    var count: String? = null,
+    var err: String? = null,
+    var serial:String? = null,
+    @Ignore
+    var pencodee:List<Pencode>? = null,
+    @Ignore
+var pencode:List<Pencode>? = null
 
 ):Parcelable {
 
         @PrimaryKey(autoGenerate = true)
         var id : Int = 0
-@Ignore
-var pencode:List<Pencode>? = null
 
 }
 

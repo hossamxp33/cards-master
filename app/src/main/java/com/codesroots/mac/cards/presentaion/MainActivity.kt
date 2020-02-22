@@ -191,7 +191,7 @@ title.setTextSize(20f);
 
 
                             if (it.err != null) {
-                                it.err.snack((context as MainActivity).window.decorView.rootView)
+                                it.err!!.snack((context as MainActivity).window.decorView.rootView)
                                 dialogView.err.text = it.err
                                 dialogView.err.isGone = false
                             } else {
@@ -208,7 +208,6 @@ Glide.with(context as MainActivity)
                 val homeIntent = Intent(context, Payment::class.java)
 
                 homeIntent.putExtra("myobj", it)
-
                 (context as MainActivity).startActivity(homeIntent)
 
             }
@@ -240,7 +239,7 @@ Glide.with(context as MainActivity)
 
 
                     if (it.err != null) {
-                        it.err.snack((context as MainActivity).window.decorView.rootView)
+                        it.err!!.snack((context as MainActivity).window.decorView.rootView)
                         dialogView.err.text = it.err
                         dialogView.err.isGone = false
                     } else {
@@ -332,7 +331,7 @@ Glide.with(context as MainActivity)
 
             viewModel.BuyPackageResponseLD?.observe(context, Observer {
                 if (it.err != null) {
-                    it.err.snack((context as MainActivity).window.decorView.rootView)
+                    it.err!!.snack((context as MainActivity).window.decorView.rootView)
 
 
                 } else {
@@ -379,7 +378,7 @@ Glide.with(context as MainActivity)
 
             viewModel.BuyPackageResponseLD?.observe(context, Observer {
                 if (it.err != null) {
-                    it.err.snack((context as MainActivity).window.decorView.rootView)
+                    it.err!!.snack((context as MainActivity).window.decorView.rootView)
 
 
                 } else {
