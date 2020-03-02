@@ -19,6 +19,7 @@ import com.codesroots.mac.cards.presentaion.MainActivity
 import com.codesroots.mac.cards.presentaion.isInternetConnectionAvailable
 import com.codesroots.mac.cards.presentaion.snack
 import kotlinx.android.synthetic.main.activity_signin.*
+import org.jetbrains.anko.internals.AnkoInternals.getContext
 
 class LoginActivity : AppCompatActivity() {
     var network_enabled = false
@@ -33,7 +34,8 @@ class LoginActivity : AppCompatActivity() {
       setContentView(R.layout.activity_signin)
         PreferenceHelper(this)
 
-        if (checkUserLogin(this))    startActivity(Intent(this  , MainActivity::class.java))
+        if (checkUserLogin(this))
+            startActivity(Intent(this  , MainActivity::class.java))
 
 
 
@@ -41,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
 
             if (!isInternetConnectionAvailable(this)) "رجاء تأكد من اتصالك بالانترنت".snack(window.decorView.rootView)
-viewModel.Login(etUsername.text.toString(),etPassword.text.toString())
+             viewModel.Login(etUsername.text.toString(),etPassword.text.toString())
 
         }
 
