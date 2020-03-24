@@ -15,7 +15,7 @@ import com.codesroots.mac.cards.models.MyLocationUseCase
 import com.codesroots.mac.cards.presentaion.ClickHandler
 import com.codesroots.mac.cards.presentaion.MainActivity
 import com.codesroots.mac.cards.presentaion.mainfragment.viewmodel.MainViewModel
-class MainAdapter ( var viewModel: MainViewModel,var context :Context?,var data:List<CompanyDatum>) : RecyclerView.Adapter<CustomViewHolder>() {
+class MainAdapter (var viewModel: MainViewModel,var context :Context?,var data:List<CompanyDatum>) : RecyclerView.Adapter<CustomViewHolder>() {
     override fun getItemCount(): Int {
 
         return  data.size

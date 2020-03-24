@@ -48,7 +48,7 @@ class mainFragment  : Fragment(){
         viewModel.getMyBalance()
         viewModel.GetMyImages(PreferenceHelper.getToken())
         viewModel.CompanyResponseLD?.observe(this , Observer {
-            MainAdapter = MainAdapter( viewModel,context,it)
+            MainAdapter = MainAdapter(viewModel,context,it)
             view.recyler.layoutManager = GridLayoutManager(context,2)
             view.recyler.adapter = MainAdapter;
             view.textView11.typeface = typeface

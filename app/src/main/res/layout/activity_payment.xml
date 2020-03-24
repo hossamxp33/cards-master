@@ -9,6 +9,10 @@
                 name="Buy"
                 type="com.codesroots.mac.cards.models.Buypackge"/>
     </data>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".SignInActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:background="#E6EAED">
@@ -17,7 +21,7 @@
                 android:id="@+id/appCompatImageView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:imageResource="@{Buy.src}"
                 app:layout_constraintBottom_toTopOf="@+id/fe2avalue"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +37,8 @@
                 android:layout_marginTop="8dp"
                 android:text="@{Buy.name }"
                 android:textColor="#000"
+                android:textStyle="bold"
+
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +58,7 @@
                 android:layout_marginTop="8dp"
                 android:text="PIN"
                 android:textColor="#000"
-                android:textSize="18sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,48 +68,64 @@
                 android:id="@+id/secret"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/border_text"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:gravity="center"
+
                 android:textColor="#000"
-                android:textSize="16sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/infotitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        <TextView
+                android:id="@+id/infotitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="تعليمات"
+                android:textColor="#000"
+                android:textSize="27sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/secret" />
 
         <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="لتعبئة الرصيد اضغط *133* ثم الرقم السري ثم # "
+                android:text="@{Buy.notes }"
                 android:textStyle="bold"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:maxLines="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/secret" />
+                app:layout_constraintTop_toBottomOf="@+id/infotitle" />
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/detailsview"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="8dp"
                 android:background="#E6EAED"
-                app:layout_constraintBottom_toTopOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/secret"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
                 app:layout_constraintVertical_bias="1.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
-
                     android:background="#E6EAED"
-                    android:layout_marginLeft="16dp">
+                   >
 
                 <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guidelineinsidecard"
@@ -117,11 +139,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
-                        android:text="serial : "
+                        android:text="السيريال :"
                         android:textColor="#000000"
-                        android:textSize="18sp"
+                        android:layout_marginRight="8dp"
+
+                        android:textSize="25sp"
                         android:textStyle="bold"
-                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/guidelineinsidecard" />
 
                 <TextView
@@ -129,10 +153,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000"
-                        android:textSize="18sp"
+                        android:textSize="25sp"
                         android:textStyle="bold"
+                        android:text="@{Buy.opno.toString()}"
+
                         android:layout_marginLeft="16dp"
-                        app:layout_constraintLeft_toRightOf="@+id/textView6"
+                        app:layout_constraintBottom_toBottomOf="@id/textView6"
+                        app:layout_constraintEnd_toStartOf="@+id/textView6"
                         app:layout_constraintTop_toTopOf="@+id/textView6" />
 
                 <TextView
@@ -140,12 +167,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="expiry  :  "
+                        android:text=" الصلاحية :"
+                        android:layout_marginRight="8dp"
                         android:textColor="#000000"
                         android:layout_marginLeft="16dp"
-                        android:textSize="18sp"
+                        android:textSize="25sp"
                         android:textStyle="bold"
-                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                 <TextView
@@ -155,19 +183,20 @@
                         android:layout_marginLeft="16dp"
                         android:text="@{Buy.time }"
                         android:textColor="#000"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
-                        app:layout_constraintLeft_toRightOf="@+id/lastvalue"
+                        app:layout_constraintBottom_toBottomOf="@id/lastvalue"
+                        app:layout_constraintEnd_toStartOf="@+id/lastvalue"
                         app:layout_constraintTop_toTopOf="@+id/lastvalue" />
 
                 <TextView
                         android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text=" التاريخ و الوقت :"
+                        android:layout_marginTop="16dp"
+                        android:text=" التاريخ و الوقت"
                         android:textColor="#000000"
-                        android:textSize="18sp"
+                        android:textSize="25sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -179,12 +208,36 @@
                         android:layout_height="wrap_content"
                         android:text="@{Buy.time }"
                         android:textColor="#000"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
+                <TextView
+                        android:id="@+id/officename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="اسم المكتب"
+                        android:textColor="#000000"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/timevalue" />
+                <TextView
+                        android:id="@+id/officenamevalue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@{Buy.salor}"
+                        android:textColor="#000000"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/officename" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
         <androidx.constraintlayout.widget.Guideline
@@ -193,4 +246,6 @@
                 android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.8"
                 android:id="@+id/guideline2"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout></layout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

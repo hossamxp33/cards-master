@@ -33,13 +33,13 @@ class  DataRepo {
     }
 
     @SuppressLint("CheckResult")
-
     fun GetData(livedata: MutableLiveData<List<CompanyDatum>>?) {
 
         APIServices.create().GetCompanyData(PreferenceHelper.getToken())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { data -> data }
+
             .subscribe(
                 { success ->
                     livedata?.postValue(success)
@@ -60,8 +60,8 @@ class  DataRepo {
             .observeOn(AndroidSchedulers.mainThread())
             .map { data -> data }
             .subscribe(
-                { books ->
-                    livedata?.postValue(books)
+                { success ->
+                    livedata?.postValue(success)
                 },
                 { error ->
 
