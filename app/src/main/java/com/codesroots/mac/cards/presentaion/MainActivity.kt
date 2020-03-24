@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
             R.drawable.work, R.color.signinpurple
         )
         with(bottom_navigation) {
-            addItems(listOf(item2, item1,item3))
+            addItems(listOf(item2, item1,item3,item4))
             inactiveColor = ContextCompat.getColor(context ,R.color.gray )
             accentColor  =  ContextCompat.getColor(context ,R.color.signinpurple )
 
@@ -225,74 +225,51 @@ Glide.with(context as MainActivity)
                     })
                 }
             }
-//            dialogView.saveToRoom.setOnClickListener { v: View? ->
-//            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
-//                return@setOnClickListener
-//            }
-//            v!!.isGone = true
-//            mLastClickTime = SystemClock.elapsedRealtime();
-//            val auth = PreferenceHelper.getToken()
-//            viewmodel.BuyPackage(id,auth!!,dialogView.from.text.toString())
-//
-//            if (viewmodel.BuyPackageResponseLD?.hasObservers() == false) {
-//                viewmodel.BuyPackageResponseLD?.observe(context, Observer {
-//
-//
-//                    if (it.err != null) {
-//                        it.err!!.snack((context as MainActivity).window.decorView.rootView)
-//                        dialogView.err.text = it.err
-//                        dialogView.err.isGone = false
-//                    } else {
-//                        if (!it!!.pencode.isNullOrEmpty()) {
-//        Thread {
-//            val db = Room.databaseBuilder(
-//                context,
-//                CardDatabase::class.java, "card-database"
-//            ).build()
-//            insertUserWithPet(it, db.getCardDao())
-//            "تم الحفظ بالمحفظة بنجاح".snack((context).window.decorView.rootView)
-//        }.start()
-//
-////                   GlobalScope.launch {
-////                       val db = Room.databaseBuilder(
-////                          context,
-////                           CardDatabase::class.java, "card-database"
-////                       ).build()
-////                       db.getCardDao().GetAllData()
-////                  "تم الحفظ بالمحفظة بنجاح".snack((context).window.decorView.rootView)
-////                   }
-////
-////                            Glide.with(context as MainActivity)
-////                                .asBitmap()
-////                                .load("http://across-cities.com/"+it.src)
-////                                .into(object : SimpleTarget<Bitmap>(100, 100) {
-////                                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-////                                        try {
-////
-////                                            val homeIntent = Intent(context, Payment::class.java)
-////
-////                                            homeIntent.putExtra("myobj", it)
-////
-////                                            (context as MainActivity).startActivity(homeIntent)
-////
-////                                        }
-////                                        catch (e: IOException) {
-////                                            // handle exception
-////                                        }
-////                                    }
-////
-////                                    override fun onLoadFailed(errorDrawable: Drawable?) {
-////                                        // handle exception
-////                                    }
-////                                })
-//
-//                        }
-//
-//                    }
-//
-//                })
-//            }
-//        }
+            dialogView.saveToRoom.setOnClickListener { v: View? ->
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                return@setOnClickListener
+            }
+            v!!.isGone = true
+            mLastClickTime = SystemClock.elapsedRealtime();
+            val auth = PreferenceHelper.getToken()
+            viewmodel.BuyPackage(id,auth!!,dialogView.from.text.toString())
+
+            if (viewmodel.BuyPackageResponseLD?.hasObservers() == false) {
+                viewmodel.BuyPackageResponseLD?.observe(context, Observer {
+
+
+                    if (it.err != null) {
+                        it.err!!.snack((context as MainActivity).window.decorView.rootView)
+                        dialogView.err.text = it.err
+                        dialogView.err.isGone = false
+                    } else {
+                        if (!it!!.pencode.isNullOrEmpty()) {
+        Thread {
+            val db = Room.databaseBuilder(
+                context,
+                CardDatabase::class.java, "card-database"
+            ).build()
+            insertUserWithPet(it, db.getCardDao())
+            "تم الحفظ بالمحفظة بنجاح".snack((context).window.decorView.rootView)
+        }.start()
+
+                   GlobalScope.launch {
+                       val db = Room.databaseBuilder(
+                          context,
+                           CardDatabase::class.java, "card-database"
+                       ).build()
+                       db.getCardDao().GetAllData()
+                  "تم الحفظ بالمحفظة بنجاح".snack((context).window.decorView.rootView)
+                   }
+
+
+                        }
+
+                    }
+
+                })
+            }
+        }
     }
 
     fun insertUserWithPet(user: Buypackge, cardDao: CardDao) {
