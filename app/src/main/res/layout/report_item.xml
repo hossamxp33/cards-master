@@ -21,7 +21,8 @@
             android:onClick="@{() -> listener.ShowReport(Context,data.opno)}"
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
-            android:background="@color/white"
+            android:layoutAnimation="@anim/layout_animation"
+            android:background="@drawable/reduisbackground"
             android:layout_height="wrap_content">
 
         <TextView
@@ -29,26 +30,29 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:text="@{data.cardname}"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:visibility="@{data.cardname != `` ?  View.VISIBLE: View.GONE}"
+                app:fontFamily="@font/fonts"
                 app:layout_constraintRight_toLeftOf="@+id/appCompatImageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView android:layout_width="0dp"
-                  android:textSize="18dp"
-                  android:id="@+id/opno"
-                  android:textColor="@color/black"
-                  android:textStyle="bold"
-                  android:text="@{data.opno}"
-                  android:layout_height="wrap_content"
-                  android:layout_marginEnd="16dp" app:layout_constraintRight_toRightOf="parent"
-                  android:layout_marginRight="16dp" android:layout_marginTop="16dp"
-                  app:layout_constraintTop_toBottomOf="@+id/name"/>
+        <TextView
+                android:id="@+id/opno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@{data.opno}"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:fontFamily="@font/fonts"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
 
 
         <TextView
@@ -56,27 +60,29 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:gravity="right"
                 android:text="@{data.amount}"
                 android:textColor="@color/red"
                 android:textSize="14sp"
+                app:fontFamily="@font/fonts"
                 app:layout_constraintRight_toRightOf="@+id/name"
                 app:layout_constraintTop_toBottomOf="@+id/opno" />
 
 
-        <TextView android:layout_width="0dp"
-                  app:layout_constraintTop_toTopOf="@+id/opno"
-                  android:text="@{data.opdate}"
-                  android:layout_marginTop="5dp"
-                  android:textColor="#726868"
-                  android:id="@+id/time"
-                  android:textSize="14sp"
+        <TextView
+                android:id="@+id/time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="32dp"
+                android:text="@{data.opdate}"
+                android:textColor="#726868"
 
-                  android:layout_height="wrap_content"
-                  app:layout_constraintRight_toLeftOf="@+id/opno" android:layout_marginRight="32dp"
-                  android:layout_marginEnd="32dp"/>
+                android:textSize="14sp"
+                app:fontFamily="@font/fonts"
+                app:layout_constraintRight_toLeftOf="@+id/opno"
+                app:layout_constraintTop_toTopOf="@+id/opno" />
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
