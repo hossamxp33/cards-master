@@ -21,6 +21,8 @@ data class Buypackge (
     var notes: String? = null,
     var count: String? = null,
     var err: String? = null,
+    var notesimg :String? = null,
+
     var serial:String? = null,
     @Ignore
     var pencode:List<Pencode>? = null
