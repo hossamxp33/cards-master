@@ -12,10 +12,14 @@ import android.os.SystemClock
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.core.view.isGone
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
@@ -38,8 +42,10 @@ import com.codesroots.mac.cards.presentaion.mainfragment.viewmodel.MainViewModel
 import com.codesroots.mac.cards.presentaion.menufragmen.MenuFragment
 import com.codesroots.mac.cards.presentaion.payment.Payment
 import com.codesroots.mac.cards.presentaion.reportsFragment.ReportsFragment
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.alert_add_reserve.view.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.runOnUiThread
@@ -48,8 +54,13 @@ import java.io.IOException
 import kotlin.concurrent.thread
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    lateinit var homeFragment: mainFragment
+    lateinit var reportsFragment: ReportsFragment
+    lateinit var moreFragment: MenuFragment
+    lateinit var wallet: PortiflioFragment
 
+    lateinit var navigationView: NavigationView
     override fun onResume() {
         super.onResume()
         println("onressomes")
@@ -58,22 +69,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ///Room
-//
-//        Thread{
-//            val db = Room.databaseBuilder(
-//                applicationContext,
-//                CardDatabase::class.java,"card-database"
-//            ).build()
-//            val card = CardDB()
-//            card.name = "Alaa Radwan"
-//
-//            db.getCardDao().AddCard(card)
-//            db.getCardDao().getAllNotes().forEach{
-//                Log.i("code","""" Name - ${it.name}""" )
-//
-//            }
-//        }
+        ///////// tool bar and drawerToggle
+        setSupportActionBar(toolBar)
+        val actionBar = supportActionBar
+        actionBar?.title = ""
+        val drawerToggle: ActionBarDrawerToggle =
+            object : ActionBarDrawerToggle(this, drawerLayout, toolBar, (R.string.open), (R.string.close)) {
+
+            }
+        drawerToggle.isDrawerIndicatorEnabled = true
+        drawerLayout.addDrawerListener(drawerToggle)
+        drawerToggle.syncState()
+        nav_view.setNavigationItemSelectedListener(this)
+        homeFragment = mainFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frame, homeFragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
 
 
 
@@ -109,19 +121,19 @@ class MainActivity : AppCompatActivity() {
         /*  getLastLocation()*/
 
         if (position==3) {
-            supportFragmentManager!!.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+            supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
                 .replace(com.codesroots.mac.cards.R.id.main_frame, PortiflioFragment()).addToBackStack(null).commit()
         }
         if (position==2) {
-            supportFragmentManager!!.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+            supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
                 .replace(com.codesroots.mac.cards.R.id.main_frame, MenuFragment()).addToBackStack(null).commit()
         }
         if (position==1) {
-            supportFragmentManager!!.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+            supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
                 .replace(R.id.main_frame, mainFragment()).addToBackStack(null).commit()
         }
         if (position == 0){
-            supportFragmentManager!!.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+            supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
                 .replace(R.id.main_frame, ReportsFragment()).addToBackStack(null).commit()
 
 
@@ -135,7 +147,56 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+
+        when (menuItem.itemId) {
+            R.id.home -> {
+                homeFragment = mainFragment()
+                supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+                    .replace(R.id.main_frame, homeFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
+
+
+            }
+            R.id.reports -> {
+                reportsFragment = ReportsFragment()
+                supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+                    .replace(R.id.main_frame, reportsFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
+            }
+            R.id.more -> {
+                moreFragment = MenuFragment()
+                supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+                    .replace(R.id.main_frame, moreFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
+            }
+            R.id.more -> {
+                wallet = PortiflioFragment()
+                supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+                    .replace(R.id.main_frame, wallet)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
+            }
+
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.isDrawerOpen(GravityCompat.START)
+        }
+        else{
+            super.onBackPressed()
+        }
+    }
 }
+
 class ClickHandler {
 
     var  mLastClickTime: Long = 0
@@ -143,11 +204,11 @@ class ClickHandler {
     fun SwitchToPackages( context: Context,comid :String) {
 
         val bundle = Bundle()
-      //  bundle.putParcelable("cliObj" ,clients[position] )
+        //  bundle.putParcelable("cliObj" ,clients[position] )
         val frag = CompanyDetails()
-        frag.arguments =bundle
+        frag.arguments = bundle
         bundle.putString("packageId" , comid)
-        ( context as MainActivity).supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+        ( context as MainActivity).supportFragmentManager!!.beginTransaction().setCustomAnimations(R.anim.ttb,0, 0,0)
             .replace(R.id.main_frame, frag).addToBackStack(null).commit()
     }
     fun SwitchToReports( context: Context,comid :String) {

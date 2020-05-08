@@ -13,5 +13,6 @@
     <string name="maping">الخريطة</string>
     <string name="logout">تسجيل الخروج</string>
     <string name="toast_2">The service has been disconnected!</string>
-
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>
