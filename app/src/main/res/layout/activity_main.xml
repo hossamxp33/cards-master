@@ -36,12 +36,42 @@
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
-    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/black"
+            android:layout_height="60dp"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/naz2"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5"
+                app:srcCompat="@drawable/logo"
+                tools:srcCompat="@drawable/logo" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/naz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5"
+                app:srcCompat="@drawable/logonaz"
+                tools:srcCompat="@drawable/logonaz" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

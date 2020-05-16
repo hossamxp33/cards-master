@@ -26,16 +26,20 @@
             android:layout_height="match_parent"
             android:background="#e9ebee"
             >
+
         <androidx.viewpager.widget.ViewPager
                 android:id="@+id/pager"
-                android:layout_width="0dp"
-                app:layout_constraintWidth_percent="0.8"
+                android:layout_width="match_parent"
                 android:layout_height="120dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="16dp"/>
+                android:layout_marginRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.8" />
         <com.viewpagerindicator.CirclePageIndicator
                 android:id="@+id/indicator"
                 android:layout_width="0dp"
@@ -48,16 +52,21 @@
                 app:layout_constraintEnd_toEndOf="@+id/pager"
                 app:layout_constraintBottom_toBottomOf="@+id/pager"
                 app:pageColor="#fff"
-                app:snap="false" app:layout_constraintBottom_toTopOf="@id/recyler"/>
+                app:snap="false"
+                app:layout_constraintBottom_toTopOf="@id/recyler"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
                 android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/constraintLayouttest" />
@@ -69,7 +78,6 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/reduisbackground"
-                android:layoutAnimation="@anim/layout_animation"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

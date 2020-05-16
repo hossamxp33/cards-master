@@ -25,6 +25,8 @@
             android:background="@drawable/reduisbackground"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layoutAnimation="@anim/layout_animation"
+
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"

@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -68,8 +69,16 @@ class mainFragment  : Fragment(){
             indicator.setViewPager(view.pager)
 
             it?.size?.let { it1 -> init(it1) }
+
         })
+        animation()
         return view.root;
+    }
+
+    private fun animation(){
+        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
+        pager!!.animation = ttb
+
     }
     private fun init(size: Int) {
         val density = getResources().getDisplayMetrics().density

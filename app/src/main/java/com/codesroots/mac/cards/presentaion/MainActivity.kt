@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
@@ -14,11 +15,14 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.isGone
+import androidx.databinding.library.baseAdapters.BR.context
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -49,6 +53,7 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.runOnUiThread
+import org.jetbrains.anko.startActivity
 
 import java.io.IOException
 import kotlin.concurrent.thread
@@ -91,60 +96,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         AidlUtil.getInstance().connectPrinterService(this)
         PreferenceHelper(this)
-
-        // Create messages
-        val item1 = AHBottomNavigationItem(
-            R.string.tab_1,
-            R.drawable.house_outline, R.color.signinpurple
-        )
-        val item2 = AHBottomNavigationItem(
-            R.string.tab_2,
-            R.drawable.analytics, R.color.signinpurple
-        )
-        val item3 = AHBottomNavigationItem(
-            R.string.tab_3,
-            R.drawable.more, R.color.signinpurple
-        )
-        val item4 = AHBottomNavigationItem(
-            R.string.tab_4,
-            R.drawable.work, R.color.signinpurple
-        )
-        with(bottom_navigation) {
-            addItems(listOf(item2, item1,item3,item4))
-            inactiveColor = ContextCompat.getColor(context ,R.color.gray )
-            accentColor  =  ContextCompat.getColor(context ,R.color.signinpurple )
-
-            currentItem = 1
-
-    setOnTabSelectedListener { position, wasSelected ->Unit
-        Log.e( "tab positiion",position.toString())
-        /*  getLastLocation()*/
-
-        if (position==3) {
-            supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
-                .replace(com.codesroots.mac.cards.R.id.main_frame, PortiflioFragment()).addToBackStack(null).commit()
-        }
-        if (position==2) {
-            supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
-                .replace(com.codesroots.mac.cards.R.id.main_frame, MenuFragment()).addToBackStack(null).commit()
-        }
-        if (position==1) {
-            supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
-                .replace(R.id.main_frame, mainFragment()).addToBackStack(null).commit()
-        }
-        if (position == 0){
-            supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
-                .replace(R.id.main_frame, ReportsFragment()).addToBackStack(null).commit()
-
-
-        }
-        true
-
+        animation()
+naz.setOnClickListener {
+val launchIntent = getPackageManager().getLaunchIntentForPackage("com.codesroots.mac.Tajnaz");
+if (launchIntent != null) {
+   startActivity(launchIntent);
+} else {
+    val i =  Intent(android.content.Intent.ACTION_VIEW);
+    i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.codesroots.mac.Tajnaz" ));
+    startActivity(i);
+}
+    naz2.setOnClickListener {
+        homeFragment = mainFragment()
+        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+            .replace(R.id.main_frame, homeFragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
     }
-            supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
-                .replace(R.id.main_frame, mainFragment() , "Main").addToBackStack(null).commit()
-
-        }
+}
 
     }
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
@@ -186,7 +155,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+    private fun animation(){
+        val ttb = AnimationUtils.loadAnimation(this, R.anim.img)
+        naz.animation = ttb
 
+    }
     override fun onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.isDrawerOpen(GravityCompat.START)
@@ -196,6 +169,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 }
+
 
 class ClickHandler {
 
@@ -218,7 +192,7 @@ class ClickHandler {
         val frag = ReportsFragment()
         frag.arguments =bundle
         bundle.putString("packageId" , comid)
-        ( context as MainActivity).supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb, 0, 0,0)
+        ( context as MainActivity).supportFragmentManager.beginTransaction()
             .replace(R.id.main_frame, frag).addToBackStack(null).commit()
     }
 
@@ -375,8 +349,6 @@ Glide.with(context as MainActivity)
 
                 } else {
                     if (!it!!.pencode.isNullOrEmpty()) {
-
-
                         Glide.with(context as MainActivity)
                             .asBitmap()
                             .load("http://across-cities.com/" + it.src)
@@ -385,9 +357,7 @@ Glide.with(context as MainActivity)
                                     try {
 
                                         val homeIntent = Intent(context, Payment::class.java)
-
                                         homeIntent.putExtra("myobj", it)
-
                                         (context as MainActivity).startActivity(homeIntent)
 
                                     } catch (e: IOException) {
